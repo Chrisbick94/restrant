@@ -1,23 +1,18 @@
-//Require modules 
+require('dotenv').config()
 const express = require('express')
-
-//Initialize the app variable
 const app = express()
 
-//homepage
-app.get('/', function(req, res) {
-    res.send('Hello World!')
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+app.use('/places', require('./controllers/places'))
+
+app.get('/', (req, res) => {
+  res.render('home')
 })
 
-//secondpage
-app.get('/second', function(req, res){
-    res.send('Second Page!')
+app.get('*', (req, res) => {
+    res.status(404)('<h1>404 page</h1>')
 })
 
-//thirdpage
-app.get('/third', function(req, res){
-    res.send('Third Page!')
-})
-
-//Port the server will listen on
-app.listen(3000)
+app.listen(process.env.PORT)

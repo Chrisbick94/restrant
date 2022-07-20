@@ -1,11 +1,14 @@
-const express = require('express').Router()
+require('dotenv').config()
+const express = require('express')
+const app = express
 
-
-router.get('/', (req, res) => {
-    res.send('GET /places')
+app.get('/', (req, res) => {
+    res.send('hello world')
 })
 
-module.exports = router
+
+
+app.listen(process.env.PORT)
 
 
 
