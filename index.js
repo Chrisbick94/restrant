@@ -1,15 +1,23 @@
-require('dotenv').config()
+//Require modules 
 const express = require('express')
+
+//Initialize the app variable
 const app = express()
 
-app.use('/places', require('./controllers/places'))
-
-app.get('/', (req, res) => {
-    res.send('Hello world!')
+//homepage
+app.get('/', function(req, res) {
+    res.send('Hello World!')
 })
 
-app.get('*', (req, res) => {
-    res.status(404).send('<h1>404 Page</h1>')
+//secondpage
+app.get('/second', function(req, res){
+    res.send('Second Page!')
 })
 
-app.listen(process.env.PORT)
+//thirdpage
+app.get('/third', function(req, res){
+    res.send('Third Page!')
+})
+
+//Port the server will listen on
+app.listen(3000)
