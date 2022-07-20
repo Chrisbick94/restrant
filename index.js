@@ -8,8 +8,9 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use('/places', require('./controllers/places'))
 
 app.get('/', (req, res) => {
-  res.render('home')
+    res.render('home')
 })
+
 
 app.get('*', (req, res) => {
     res.status(404)('<h1>404 page</h1>')
