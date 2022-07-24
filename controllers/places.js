@@ -6,10 +6,7 @@ router.get('/', (req, res) => {
     res.render('places/index', { places })
 })
 
-router.get('/new', (req, res) => {
-    res.render('places/new')
-})
-
+// post/places
 router.post('/', (req, res) => {
     if (!req.body.pic) {
         // Default image if one is not provided
@@ -25,6 +22,44 @@ router.post('/', (req, res) => {
     res.redirect('/places')
 })
 
+// /new
+router.get('/new', (req, res) => {
+    res.render('places/new')
+})
+
+// places/show
+router.get('/:id', (req, res) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+        res.render('places/show', { place: places[id], id })
+    }
+})
+
+// edit
+// router.get('/:id/edit', (req, res) => {
+//     res.send('STUB Edit places/:id/edit')
+// })
+
+// delete
+// router.delete('/:id', (req, res) => {
+//     let id = Number(req.params.id)
+//     if (isNaN(id)) {
+//         res.render('error404')
+//     }
+//     else if (!places[id]) {
+//         res.render('error404')
+//     }
+//     else {
+//         places.splice(id, 1)
+//         res.redirect('/places')
+//     }
+// })
 
 module.exports = router
 
@@ -32,3 +67,4 @@ module.exports = router
 // {/* Photo by <a href="https://unsplash.com/@ninjason?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jason Leung</a> on <a href="https://unsplash.com/s/photos/restaurant?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */ }
 // Photo by <a href="https://unsplash.com/es/@digndoug?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Doug Greenman</a> on <a href="https://unsplash.com/s/photos/coffee-house?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 // {/* Photo by <a href="https://unsplash.com/@chrisliverani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Liverani</a> on <a href="https://unsplash.com/s/photos/restaurant?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */ }
+
