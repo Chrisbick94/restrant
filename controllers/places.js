@@ -23,6 +23,9 @@ router.post('/', (req, res) => {
 })
 
 // /new
+
+  
+
 router.get('/new', (req, res) => {
     res.render('places/new')
 })
@@ -43,8 +46,18 @@ router.get('/:id', (req, res) => {
 
 // edit
 router.get('/:id/edit', (req, res) => {
-    res.send('STUB Edit places/:id/edit')
-})
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+      res.render('places/edit', { place: places[id] })
+    }
+  })
+  
 
 // delete
 router.delete('/:id', (req, res) => {
