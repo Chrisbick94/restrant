@@ -47,8 +47,6 @@ router.get('/:id', (req, res) => {
         })
 })
 
-
-
 // put
 router.put('/:id', (req, res) => {
     res.send('PUT /places/:id stub')
